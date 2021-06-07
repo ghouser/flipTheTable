@@ -42,7 +42,10 @@ export default function Html({
             dangerouslySetInnerHTML={{ __html: style.cssText }}
           />
         ))}
-        <link href="https://fonts.googleapis.com/css2?family=Fondamento&display=swap" rel="stylesheet"></link>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Fondamento&display=swap"
+          rel="stylesheet"
+        />
       </head>
       <body>
         <div id="app" dangerouslySetInnerHTML={{ __html: children }} />

@@ -11,11 +11,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import StyleContext from 'isomorphic-style-loader/StyleContext';
+import { ThemeProvider, CSSReset } from '@chakra-ui/core';
 import ApplicationContext from './ApplicationContext';
 
 // let's try to wrap chakra here
 import customTheme from '../theme';
-import { ThemeProvider, CSSReset } from '@chakra-ui/core';
 
 /**
  * The top-level React component setting context (global) variables
@@ -47,7 +47,7 @@ export default function App({ context, insertCss, children }) {
     <StyleContext.Provider value={{ insertCss }}>
       <ApplicationContext.Provider value={{ context }}>
         <ThemeProvider theme={customTheme}>
-        <CSSReset />
+          <CSSReset />
           {React.Children.only(children)}
         </ThemeProvider>
       </ApplicationContext.Provider>

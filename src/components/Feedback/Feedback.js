@@ -8,10 +8,10 @@
  */
 
 import React from 'react';
-import { Box, Text, Link } from "@chakra-ui/core";
+import { Box, Text, Link } from '@chakra-ui/core';
 
 // spacing and format for feedback banner link items
-const LinkItems = (props) => (
+const LinkItems = props => (
   <Link href={props.to} mt={{ base: 4, md: 0 }} ml={2} mr={2} display="block">
     {props.children}
   </Link>
@@ -21,15 +21,11 @@ const LinkItems = (props) => (
 export default function Feedback() {
   return (
     <Box bg="blue.600" color="earth.100" display="flex" justifyContent="center">
-      <LinkItems to="mailto:derp@derp.com">
-        Ask a question
-      </LinkItems>
+      <LinkItems to="mailto:derp@derp.com">Ask a question</LinkItems>
       <Text mt={{ base: 4, md: 0 }} display="block">
         |
       </Text>
-      <LinkItems to="mailto:derp@derp.com">
-      Report an issue
-      </LinkItems>
+      <LinkItems to="mailto:derp@derp.com">Report an issue</LinkItems>
     </Box>
   );
 }

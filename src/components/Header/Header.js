@@ -8,17 +8,22 @@
  */
 
 import React from 'react';
+import { Flex, Heading } from '@chakra-ui/core';
 import ReactLink from '../Link';
 import Navigation from '../Navigation';
-import { Flex, Heading } from "@chakra-ui/core";
 
 export default function Header() {
   return (
-    <Flex bg="blue.600" color="earth.100" align="center" justify="space-between">
-        <Heading as={ReactLink} to="/">
-          Flip the Table
-        </Heading>
-        <Navigation />
+    <Flex
+      bg="blue.600"
+      color="earth.100"
+      align="center"
+      justify="space-between"
+    >
+      <Heading as={ReactLink} to="/">
+        Flip the Table
+      </Heading>
+      <Navigation />
     </Flex>
   );
 }

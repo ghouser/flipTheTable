@@ -8,12 +8,19 @@
  */
 
 import React from 'react';
+import { Box, Text, Button } from '@chakra-ui/core';
 import ChakraLink from '../ChakraLink';
-import { Box, Text, Button } from "@chakra-ui/core";
 
 // spacing and format for top navbar link items
 const LinkItems = ({ children }) => (
-  <ChakraLink to={"/"+children.toLowerCase().replace(/\s/g, '')} mt={{ base: 4, md: 0 }} mb={2} ml={2} mr={2} display="block">
+  <ChakraLink
+    to={`/${children.toLowerCase().replace(/\s/g, '')}`}
+    mt={{ base: 4, md: 0 }}
+    mb={2}
+    ml={2}
+    mr={2}
+    display="block"
+  >
     {children}
   </ChakraLink>
 );
@@ -33,7 +40,17 @@ export default function Navigation() {
       <TextItems> | </TextItems>
       <LinkItems> Log in </LinkItems>
       <TextItems> or </TextItems>
-      <Button borderColor="earth.100" color="earth.100" variant="outline" as={ChakraLink} to="/register" mt={{ base: 4, md: 0 }} mb={2} ml={2} mr={2}>
+      <Button
+        borderColor="earth.100"
+        color="earth.100"
+        variant="outline"
+        as={ChakraLink}
+        to="/register"
+        mt={{ base: 4, md: 0 }}
+        mb={2}
+        ml={2}
+        mr={2}
+      >
         Sign up
       </Button>
     </Box>
