@@ -7,29 +7,29 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import useStyles from 'isomorphic-style-loader/useStyles';
 import React from 'react';
-import s from './Feedback.css';
+import { Box, Text, Link } from "@chakra-ui/core";
 
+// spacing and format for feedback banner link items
+const LinkItems = (props) => (
+  <Link href={props.to} mt={{ base: 4, md: 0 }} ml={2} mr={2} display="block">
+    {props.children}
+  </Link>
+);
+
+// To Do: Make the mailto links work and have real emails
 export default function Feedback() {
-  useStyles(s);
   return (
-    <div className={s.root}>
-      <div className={s.container}>
-        <a
-          className={s.link}
-          href="https://gitter.im/kriasoft/react-starter-kit"
-        >
-          Ask a question
-        </a>
-        <span className={s.spacer}>|</span>
-        <a
-          className={s.link}
-          href="https://github.com/kriasoft/react-starter-kit/issues/new"
-        >
-          Report an issue
-        </a>
-      </div>
-    </div>
+    <Box bg="blue.600" color="earth.100" display="flex" justifyContent="center">
+      <LinkItems to="mailto:derp@derp.com">
+        Ask a question
+      </LinkItems>
+      <Text mt={{ base: 4, md: 0 }} display="block">
+        |
+      </Text>
+      <LinkItems to="mailto:derp@derp.com">
+      Report an issue
+      </LinkItems>
+    </Box>
   );
 }

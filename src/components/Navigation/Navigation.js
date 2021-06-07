@@ -7,30 +7,35 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import useStyles from 'isomorphic-style-loader/useStyles';
 import React from 'react';
-import cx from 'classnames';
-import s from './Navigation.css';
-import Link from '../Link';
+import ChakraLink from '../ChakraLink';
+import { Box, Text, Button } from "@chakra-ui/core";
+
+// spacing and format for top navbar link items
+const LinkItems = ({ children }) => (
+  <ChakraLink to={"/"+children.toLowerCase().replace(/\s/g, '')} mt={{ base: 4, md: 0 }} mb={2} ml={2} mr={2} display="block">
+    {children}
+  </ChakraLink>
+);
+
+// spacing and format for top navbar text items
+const TextItems = ({ children }) => (
+  <Text mt={{ base: 4, md: 0 }} mb={2} display="block">
+    {children}
+  </Text>
+);
 
 export default function Navigation() {
-  useStyles(s);
   return (
-    <div className={s.root} role="navigation">
-      <Link className={s.link} to="/about">
-        About
-      </Link>
-      <Link className={s.link} to="/contact">
-        Contact
-      </Link>
-      <span className={s.spacer}> | </span>
-      <Link className={s.link} to="/login">
-        Log in
-      </Link>
-      <span className={s.spacer}>or</span>
-      <Link className={cx(s.link, s.highlight)} to="/register">
+    <Box display="flex" alignItems="center" justifyContent="space-between">
+      <LinkItems> About </LinkItems>
+      <LinkItems> Contact </LinkItems>
+      <TextItems> | </TextItems>
+      <LinkItems> Log in </LinkItems>
+      <TextItems> or </TextItems>
+      <Button borderColor="earth.100" color="earth.100" variant="outline" as={ChakraLink} to="/register" mt={{ base: 4, md: 0 }} mb={2} ml={2} mr={2}>
         Sign up
-      </Link>
-    </div>
+      </Button>
+    </Box>
   );
 }

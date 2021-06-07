@@ -7,35 +7,47 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import useStyles from 'isomorphic-style-loader/useStyles';
 import React from 'react';
-import s from './Footer.css';
-import Link from '../Link';
+import ChakraLink from '../ChakraLink';
+import { Flex, Text } from "@chakra-ui/core";
+
+// spacing and format for bottom of page link items
+const LinkItems = (props) => (
+  <ChakraLink to={props.to} mt={{ base: 4, md: 0 }} mb={2} ml={2} mr={2} display="block">
+    {props.children}
+  </ChakraLink>
+);
+
+// spacing and format for bottom of page text items
+const TextItems = (props) => (
+  <Text mt={{ base: 4, md: 0 }} mb={2} display="block">
+    {props.children}
+  </Text>
+);
 
 export default function Footer() {
-  useStyles(s);
 
   return (
-    <div className={s.root}>
-      <div className={s.container}>
-        <span className={s.text}>© Your Company</span>
-        <span className={s.spacer}>·</span>
-        <Link className={s.link} to="/">
+      <Flex bg="blue.600" color="earth.100" alight="center" justifyContent="center">
+        <LinkItems to="/about">
+          © Flip the Table
+        </LinkItems>
+        <TextItems>·</TextItems>
+        <LinkItems to="/">
           Home
-        </Link>
-        <span className={s.spacer}>·</span>
-        <Link className={s.link} to="/admin">
+        </LinkItems>
+        <TextItems>·</TextItems>
+        <LinkItems to="/admin">
           Admin
-        </Link>
-        <span className={s.spacer}>·</span>
-        <Link className={s.link} to="/privacy">
+        </LinkItems>
+        <TextItems>·</TextItems>
+        <LinkItems to="/privacy">
           Privacy
-        </Link>
-        <span className={s.spacer}>·</span>
-        <Link className={s.link} to="/not-found">
+        </LinkItems>
+        <TextItems>·</TextItems>
+        <LinkItems to="/not-found">
           Not Found
-        </Link>
-      </div>
-    </div>
+        </LinkItems>
+      </Flex>
   );
 }

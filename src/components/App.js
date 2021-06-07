@@ -13,6 +13,10 @@ import PropTypes from 'prop-types';
 import StyleContext from 'isomorphic-style-loader/StyleContext';
 import ApplicationContext from './ApplicationContext';
 
+// let's try to wrap chakra here
+import customTheme from '../theme';
+import { ThemeProvider, CSSReset } from '@chakra-ui/core';
+
 /**
  * The top-level React component setting context (global) variables
  * that can be accessed from all the child components.
@@ -42,7 +46,10 @@ export default function App({ context, insertCss, children }) {
   return (
     <StyleContext.Provider value={{ insertCss }}>
       <ApplicationContext.Provider value={{ context }}>
-        {React.Children.only(children)}
+        <ThemeProvider theme={customTheme}>
+        <CSSReset />
+          {React.Children.only(children)}
+        </ThemeProvider>
       </ApplicationContext.Provider>
     </StyleContext.Provider>
   );

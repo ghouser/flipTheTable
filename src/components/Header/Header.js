@@ -7,35 +7,18 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import useStyles from 'isomorphic-style-loader/useStyles';
 import React from 'react';
-import s from './Header.css';
-import Link from '../Link';
+import ReactLink from '../Link';
 import Navigation from '../Navigation';
-import logoUrl from './logo-small.png';
-import logoUrl2x from './logo-small@2x.png';
+import { Flex, Heading } from "@chakra-ui/core";
 
 export default function Header() {
-  useStyles(s);
   return (
-    <div className={s.root}>
-      <div className={s.container}>
+    <Flex bg="blue.600" color="earth.100" align="center" justify="space-between">
+        <Heading as={ReactLink} to="/">
+          Flip the Table
+        </Heading>
         <Navigation />
-        <Link className={s.brand} to="/">
-          <img
-            src={logoUrl}
-            srcSet={`${logoUrl2x} 2x`}
-            width="38"
-            height="38"
-            alt="React"
-          />
-          <span className={s.brandTxt}>Flip the Table</span>
-        </Link>
-        <div className={s.banner}>
-          <h1 className={s.bannerTitle}>Test Name</h1>
-          <p className={s.bannerDesc}>Catchphrase I do not have yet</p>
-        </div>
-      </div>
-    </div>
+    </Flex>
   );
 }
