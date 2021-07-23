@@ -7,11 +7,35 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import useStyles from 'isomorphic-style-loader/useStyles';
 import React from 'react';
 import PropTypes from 'prop-types';
-import s from './Login.css';
+import { Flex, Text } from '@chakra-ui/core';
 
+export default function Login(props) {
+  //const { title, ...attrs } = props;
+  const { title } = props;
+  return (
+    <Flex h="100px" bg="earth.100" align="center" justify="center">
+      <Heading
+        color="earth.100"
+        textAlign="center"
+        h="350px"
+        lineHeight="350px"
+        fontSize="5xl"
+      >
+        {title.toUpperCase()}
+      </Heading>
+      <Text fontFamily="sans-serif" color="blue.700">
+        This page is not yet implemented.
+      </Text>
+    </Flex>
+  );
+}
+
+// import useStyles from 'isomorphic-style-loader/useStyles';
+// import s from './Login.css';
+
+/*
 export default function Login({ title }) {
   useStyles(s);
 
@@ -120,6 +144,7 @@ export default function Login({ title }) {
     </div>
   );
 }
+*/
 
 Login.propTypes = {
   title: PropTypes.string.isRequired,

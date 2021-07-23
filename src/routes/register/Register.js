@@ -7,20 +7,28 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import useStyles from 'isomorphic-style-loader/useStyles';
 import React from 'react';
 import PropTypes from 'prop-types';
-import s from './Register.css';
+import { Flex, Text } from '@chakra-ui/core';
 
-export default function Register({ title }) {
-  useStyles(s);
+export default function Register(props) {
+  //const { title, ...attrs } = props;
+  const { title } = props;
   return (
-    <div className={s.root}>
-      <div className={s.container}>
-        <h1>{title}</h1>
-        <p>...</p>
-      </div>
-    </div>
+    <Flex h="100px" bg="earth.100" align="center" justify="center">
+      <Heading
+        color="earth.100"
+        textAlign="center"
+        h="350px"
+        lineHeight="350px"
+        fontSize="5xl"
+      >
+        {title.toUpperCase()}
+      </Heading>
+      <Text fontFamily="sans-serif" color="blue.700">
+        This page is not yet implemented.
+      </Text>
+    </Flex>
   );
 }
 

@@ -10,7 +10,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import StyleContext from 'isomorphic-style-loader/StyleContext';
 import { ThemeProvider, CSSReset } from '@chakra-ui/core';
 import ApplicationContext from './ApplicationContext';
 
@@ -40,25 +39,20 @@ import customTheme from '../theme';
  *   );
  */
 
-export default function App({ context, insertCss, children }) {
+export default function App({ context, children }) {
   // NOTE: If you need to add or modify header, footer etc. of the app,
   // please do that inside the Layout component.
   return (
-    <StyleContext.Provider value={{ insertCss }}>
-      <ApplicationContext.Provider value={{ context }}>
-        <ThemeProvider theme={customTheme}>
-          <CSSReset />
-          {React.Children.only(children)}
-        </ThemeProvider>
-      </ApplicationContext.Provider>
-    </StyleContext.Provider>
+    <ApplicationContext.Provider value={{ context }}>
+      <ThemeProvider theme={customTheme}>
+        <CSSReset />
+        {React.Children.only(children)}
+      </ThemeProvider>
+    </ApplicationContext.Provider>
   );
 }
 
 App.propTypes = {
-  // Enables critical path CSS rendering
-  // https://github.com/kriasoft/isomorphic-style-loader
-  insertCss: PropTypes.func.isRequired,
   context: PropTypes.shape({
     // Universal HTTP client
     fetch: PropTypes.func.isRequired,

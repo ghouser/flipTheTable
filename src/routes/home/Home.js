@@ -7,28 +7,22 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import useStyles from 'isomorphic-style-loader/useStyles';
 import React from 'react';
 import PropTypes from 'prop-types';
-import s from './Home.css';
+import { Flex } from '@chakra-ui/core';
+import LandingPage from '../../components/LandingPage';
+import photo from '../../../public/Blog_Banner.png';
 
-export default function Home({ news }) {
-  useStyles(s);
+export default function Home(props) {
+  //const { title, ...attrs } = props;
+  const { title } = props;
   return (
-    <div className={s.root}>
-      <div className={s.container}>
-        <h1>My Homescreen</h1>
-      </div>
-    </div>
+    <Flex direction="column" bg="earth.100">
+      <LandingPage title={title} photo={photo} />
+    </Flex>
   );
 }
 
 Home.propTypes = {
-  news: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      link: PropTypes.string.isRequired,
-      content: PropTypes.string,
-    }),
-  ).isRequired,
+  title: PropTypes.string.isRequired,
 };
