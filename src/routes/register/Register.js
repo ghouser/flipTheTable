@@ -9,10 +9,10 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Flex, Text } from '@chakra-ui/core';
+import { Flex, Heading, Text } from '@chakra-ui/core';
 
 export default function Register(props) {
-  //const { title, ...attrs } = props;
+  // const { title, ...attrs } = props;
   const { title } = props;
   return (
     <Flex h="100px" bg="earth.100" align="center" justify="center">
