@@ -10,7 +10,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from '@chakra-ui/core';
-import history from '../../history';
+import history from 'history.js';
 
 function isLeftClickEvent(event) {
   return event.button === 0;

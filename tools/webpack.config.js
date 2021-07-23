@@ -60,6 +60,9 @@ const config = {
     // Allow absolute paths in imports, e.g. import Button from 'components/Button'
     // Keep in sync with .flowconfig and .eslintrc
     modules: ['node_modules', 'src'],
+    alias: {
+      public: path.resolve(ROOT_DIR, 'public'),
+    },
   },
 
   module: {
@@ -233,10 +236,24 @@ const config = {
         loader: path.resolve(__dirname, './lib/markdown-loader.js'),
       },
 
+      // Convert MDX into HTML
+      {
+        test: /\.mdx$/,
+        use: ['babel-loader', '@mdx-js/loader'],
+      },
+
       // Return public URL for all assets unless explicitly excluded
       // DO NOT FORGET to update `exclude` list when you adding a new loader
       {
-        exclude: [reScript, reStyle, reImage, /\.json$/, /\.txt$/, /\.md$/],
+        exclude: [
+          reScript,
+          reStyle,
+          reImage,
+          /\.json$/,
+          /\.txt$/,
+          /\.md$/,
+          /\.mdx$/,
+        ],
         loader: 'file-loader',
         options: {
           name: staticAssetName,

@@ -10,15 +10,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Flex } from '@chakra-ui/core';
-import LandingPage from '../../components/LandingPage';
-import photo from '../../../public/Blog_Banner.png';
+import LandingPage from 'components/LandingPage';
+import photo from 'content/Blog_Banner.png';
+import Content from 'content/filler.mdx';
 
 export default function Home(props) {
-  //const { title, ...attrs } = props;
+  // const { title, ...attrs } = props;
   const { title } = props;
   return (
     <Flex direction="column" bg="earth.100">
       <LandingPage title={title} photo={photo} />
+      <Content />
     </Flex>
   );
 }

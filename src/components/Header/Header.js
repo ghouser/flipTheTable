@@ -9,8 +9,8 @@
 
 import React from 'react';
 import { Flex, Heading } from '@chakra-ui/core';
-import ReactLink from '../Link';
-import Navigation from '../Navigation';
+import ReactLink from 'components/Link';
+import Navigation from 'components/Navigation';
 
 export default function Header() {
   return (

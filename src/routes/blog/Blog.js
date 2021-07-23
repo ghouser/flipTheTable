@@ -19,7 +19,7 @@ import {
   Tab,
   TabPanel,
 } from '@chakra-ui/core';
-import LandingPage from '../../components/LandingPage';
+import LandingPage from 'components/LandingPage';
 import photo from './Blog_Banner.png';
 import palet from './palet.jpg';
 import cards from './cards.jpg';
