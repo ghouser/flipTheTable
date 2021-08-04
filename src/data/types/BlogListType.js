@@ -11,17 +11,18 @@ import {
   GraphQLObjectType as ObjectType,
   GraphQLString as StringType,
   GraphQLNonNull as NonNull,
+  GraphQLList as List,
 } from 'graphql';
 
-const NewsItemType = new ObjectType({
-  name: 'NewsItem',
+const BlogListType = new ObjectType({
+  name: 'BlogItem',
   fields: {
     title: { type: new NonNull(StringType) },
-    link: { type: new NonNull(StringType) },
-    author: { type: StringType },
+    imageLink: { type: StringType },
+    authors: { type: new List(StringType) },
     pubDate: { type: new NonNull(StringType) },
-    content: { type: StringType },
+    blurb: { type: new NonNull(StringType) },
   },
 });
 
-export default NewsItemType;
+export default BlogListType;

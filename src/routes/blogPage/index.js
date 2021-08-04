@@ -5,20 +5,6 @@ import Layout from 'components/Layout';
 
 const title = 'Blog Page';
 
-/*
-async function getMDX(name) {
-  const mdxFile = await import(`content/blogs/${name}.mdx`);
-  return mdxFile;
-}
-
-function getMDXMeta(name) {
-  const metadata = getMDX(name).then(module => {
-    module.metadata;
-  });
-  return metadata
-}
-*/
-
 function action(route) {
   // blog name from the route object
   const blogName = route.params.name;
