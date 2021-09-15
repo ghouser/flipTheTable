@@ -8,15 +8,20 @@
  */
 
 import { GraphQLList as List } from 'graphql';
+import fs from 'fs';
 import BlogListType from '../types/BlogListType';
 
 async function getMDX(name) {
-  const mdxFile = await import(`content/blogs/${name}.mdx`);
+  const mdxFile = await import(`content/blogs/${name}`);
   return mdxFile;
 }
 
-// TODO: Replace this with something that checks file names
-const blogNames = ['blog1', 'blog2'];
+const blogfolder = './src/content/blogs';
+const blogNames = [];
+
+fs.readdirSync(blogfolder).forEach(file => {
+  blogNames.push(file);
+});
 
 const blogList = {
   type: new List(BlogListType),
