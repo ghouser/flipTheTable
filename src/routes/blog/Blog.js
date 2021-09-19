@@ -10,7 +10,6 @@ import PropTypes from 'prop-types';
 import {
   Flex,
   Grid,
-  Image,
   Text,
   Divider,
   Tabs,
@@ -21,56 +20,17 @@ import {
 } from '@chakra-ui/core';
 import LandingPage from 'components/LandingPage';
 import photo from './Blog_Banner.png';
-import palet from './palet.jpg';
-import cards from './cards.jpg';
-import dice from './dice.jpg';
+// import palet from './palet.jpg';
+// import cards from './cards.jpg';
+// import dice from './dice.jpg';
 
-// eventually this will get the blog data, for now place holder
-const getBlogPreview = () => {
-  // dummy obj 1
-  const title1 = 'Sundroping Miniatures';
-  const desc1 =
-    "Don't have time to paint a whole army? Let's take a look at the sundrop technique!";
-  const thumbnail1 = palet;
-  const blogPrev1 = {
-    title: title1,
-    desc: desc1,
-    thumbnail: thumbnail1,
-    date: '7/24/2020',
-    author: 'Graham Houser',
-  };
-  // dummy obj 2
-  const title2 = "Dealin' With Dice";
-  const desc2 = 'Stop depending on RNG, and learn the basics of probability.';
-  const thumbnail2 = dice;
-  const blogPrev2 = {
-    title: title2,
-    desc: desc2,
-    thumbnail: thumbnail2,
-    date: '7/24/2020',
-    author: 'Graham Houser',
-  };
-  // dummy obj 3
-  const title3 = 'Fundamentals of Deckbuilding';
-  const desc3 =
-    "From Dominion to Aeon's End, let's discuss winning strategies common to most deckbuilding games.";
-  const thumbnail3 = cards;
-  const blogPrev3 = {
-    title: title3,
-    desc: desc3,
-    thumbnail: thumbnail3,
-    date: '7/24/2020',
-    author: 'Graham Houser',
-  };
-
-  return [blogPrev1, blogPrev2, blogPrev3];
-};
-
-// dummy variable, will be an array of blog info
-const blog = getBlogPreview();
+// create simple key by combining title and date without spaces
+function generateKey(title, date) {
+  return title.replace(/\s/g, '') + date.replace(/\s/g, '');
+}
 
 // single Tile for the blog
-const Tile = props => (
+const Tile = ({ tileId, content }) => (
   <Flex
     display="block"
     h="214px"
@@ -78,7 +38,7 @@ const Tile = props => (
     p="7px"
     backgroundColor="blue.100"
     rounded="lg"
-    id={props.key}
+    id={tileId}
   >
     <Flex w="100%" h="100%" justifyContent="space-between" alignItems="center">
       <Flex
@@ -87,24 +47,23 @@ const Tile = props => (
         rounded="lg"
         backgroundSize="cover"
         backgroundPosition="center"
-        backgroundImage={`url(${props.content.thumbnail})`}
+        // TO DO - figure out photos
+        // backgroundImage={`url(${content.thumbnail})`}
       />
       <Flex direction="column" w="50%" h="90%" overflow="hidden">
         <Text fontFamily="sans-serif" color="blue.700" fontWeight="600">
-          {props.content.title}
+          {content.title}
         </Text>
         <Divider borderColor="red.600" />
         <Text fontFamily="sans-serif" color="blue.700">
-          {props.content.desc}
+          {content.desc}
         </Text>
       </Flex>
     </Flex>
   </Flex>
 );
 
-export default function Blog(props) {
-  // spread title to a variable, the rest to attrs
-  const { title, ...attrs } = props;
+export default function Blog({ title, blogList }) {
   return (
     <Flex direction="column" bg="earth.100">
       <LandingPage title={title} photo={photo} />
@@ -121,11 +80,14 @@ export default function Blog(props) {
               justifyItems="center"
               p="5px"
             >
-              {blog.map((content, index) => (
-                <Flex direction="column">
-                  <Tile key={index} content={content} />
+              {blogList.map((content, index) => (
+                <Flex
+                  direction="column"
+                  key={generateKey(content.title, content.pubDate)}
+                >
+                  <Tile tileId={index} content={content} />
                   <Text fontFamily="sans-serif" color="blue.700">
-                    {content.author} - {content.date}
+                    {content.authors} - {content.pubDate}
                   </Text>
                 </Flex>
               ))}
@@ -139,4 +101,21 @@ export default function Blog(props) {
 
 Blog.propTypes = {
   title: PropTypes.string.isRequired,
+  blogList: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      imageLink: PropTypes.string.isRequired,
+      authors: PropTypes.arrayOf(PropTypes.string),
+      pubDate: PropTypes.string.isRequired,
+      desc: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+};
+
+Tile.propTypes = {
+  tileId: PropTypes.number.isRequired,
+  content: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    desc: PropTypes.string.isRequired,
+  }).isRequired,
 };

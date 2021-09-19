@@ -21,7 +21,7 @@ const BlogListType = new ObjectType({
     imageLink: { type: StringType },
     authors: { type: new List(StringType) },
     pubDate: { type: new NonNull(StringType) },
-    blurb: { type: new NonNull(StringType) },
+    desc: { type: new NonNull(StringType) },
   },
 });
 

@@ -8,18 +8,25 @@
  */
 
 import React from 'react';
-import Layout from '../../components/Layout';
+import Layout from 'components/Layout';
 import Blog from './Blog';
 
 const title = 'Blog';
 
-function action() {
+async function action({ fetch }) {
+  const resp = await fetch('/graphql', {
+    body: JSON.stringify({
+      query: '{blogList{title,imageLink,authors,pubDate,desc}}',
+    }),
+  });
+  const { data } = await resp.json();
+  if (!data.blogList) throw new Error('Failed to load the list of blogs.');
   return {
     chunks: ['blog'],
     title,
     component: (
       <Layout>
-        <Blog title={title} />
+        <Blog title={title} blogList={data.blogList} />
       </Layout>
     ),
   };
