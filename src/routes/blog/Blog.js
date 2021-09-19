@@ -7,19 +7,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Flex,
-  Grid,
-  Text,
-  Divider,
-  Tabs,
-  TabList,
-  TabPanels,
-  Tab,
-  TabPanel,
-} from '@chakra-ui/core';
-import LandingPage from 'components/LandingPage';
-import photo from './Blog_Banner.png';
+import { Flex, Grid, Text, Divider } from '@chakra-ui/core';
 // import palet from './palet.jpg';
 // import cards from './cards.jpg';
 // import dice from './dice.jpg';
@@ -63,44 +51,30 @@ const Tile = ({ tileId, content }) => (
   </Flex>
 );
 
-export default function Blog({ title, blogList }) {
+export default function Blog({ blogList }) {
   return (
-    <Flex direction="column" bg="earth.100">
-      <LandingPage title={title} photo={photo} />
-      <Tabs align="center" variant="soft-rounded" variantColor="blue" p="5px">
-        <TabList>
-          <Tab>Recent</Tab>
-          <Tab>Categories</Tab>
-        </TabList>
-        <TabPanels>
-          <TabPanel>
-            <Grid
-              templateColumns="repeat(2, 1fr)"
-              gap={5}
-              justifyItems="center"
-              p="5px"
-            >
-              {blogList.map((content, index) => (
-                <Flex
-                  direction="column"
-                  key={generateKey(content.title, content.pubDate)}
-                >
-                  <Tile tileId={index} content={content} />
-                  <Text fontFamily="sans-serif" color="blue.700">
-                    {content.authors} - {content.pubDate}
-                  </Text>
-                </Flex>
-              ))}
-            </Grid>
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
-    </Flex>
+    <Grid
+      templateColumns="repeat(2, 1fr)"
+      gap={5}
+      justifyItems="center"
+      p="5px"
+    >
+      {blogList.map((content, index) => (
+        <Flex
+          direction="column"
+          key={generateKey(content.title, content.pubDate)}
+        >
+          <Tile tileId={index} content={content} />
+          <Text fontFamily="sans-serif" color="blue.700">
+            {content.authors} - {content.pubDate}
+          </Text>
+        </Flex>
+      ))}
+    </Grid>
   );
 }
 
 Blog.propTypes = {
-  title: PropTypes.string.isRequired,
   blogList: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
