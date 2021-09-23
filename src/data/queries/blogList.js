@@ -17,13 +17,14 @@ async function getMDX(name) {
   return mdxFile;
 }
 
-// walks back two levels, which will be the source folder
+// walks back one level from __dirname (which sould be src)
 const ROOT_DIR = path.resolve(__dirname, '..');
 // function to add ROOT_DIR to another path
 const resolvePath = (...args) => path.resolve(ROOT_DIR, ...args);
-// add ROOT_DIR to content/blogs to get path to blogs
+// add ROOT_DIR to scr/content/blogs to get path to blogs
 const blogFolder = resolvePath('src/content/blogs');
-// const blogfolder = './src/content/blogs';
+console.log(blogFolder);
+// const blogFolder = './src/content/blogs';
 const blogNames = [];
 
 fs.readdirSync(blogFolder).forEach(file => {
