@@ -9,6 +9,7 @@
 
 import { GraphQLList as List } from 'graphql';
 import fs from 'fs';
+import path from 'path';
 import BlogListType from '../types/BlogListType';
 
 async function getMDX(name) {
@@ -16,10 +17,16 @@ async function getMDX(name) {
   return mdxFile;
 }
 
-const blogfolder = './src/content/blogs';
+// walks back two levels, which will be the source folder
+const ROOT_DIR = path.resolve(__dirname, '..');
+// function to add ROOT_DIR to another path
+const resolvePath = (...args) => path.resolve(ROOT_DIR, ...args);
+// add ROOT_DIR to content/blogs to get path to blogs
+const blogFolder = resolvePath('src/content/blogs');
+// const blogfolder = './src/content/blogs';
 const blogNames = [];
 
-fs.readdirSync(blogfolder).forEach(file => {
+fs.readdirSync(blogFolder).forEach(file => {
   blogNames.push(file);
 });
 
