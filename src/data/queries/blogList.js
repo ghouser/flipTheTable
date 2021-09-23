@@ -8,8 +8,8 @@
  */
 
 import { GraphQLList as List } from 'graphql';
-import fs from 'fs';
-import path from 'path';
+// import fs from 'fs';
+// import path from 'path';
 import BlogListType from '../types/BlogListType';
 
 async function getMDX(name) {
@@ -18,18 +18,17 @@ async function getMDX(name) {
 }
 
 // walks back one level from __dirname (which sould be src)
-const ROOT_DIR = path.resolve(__dirname, '..');
+// const ROOT_DIR = path.resolve(__dirname, '..');
 // function to add ROOT_DIR to another path
-const resolvePath = (...args) => path.resolve(ROOT_DIR, ...args);
+// const resolvePath = (...args) => path.resolve(ROOT_DIR, ...args);
 // add ROOT_DIR to scr/content/blogs to get path to blogs
-const blogFolder = resolvePath('src/content/blogs');
-console.log(blogFolder);
+// const blogFolder = resolvePath('src/content/blogs');
 // const blogFolder = './src/content/blogs';
-const blogNames = [];
+const blogNames = ['blog1.mdx', 'blog2.mdx', 'blog3.mdx', 'test.mdx'];
 
-fs.readdirSync(blogFolder).forEach(file => {
-  blogNames.push(file);
-});
+// fs.readdirSync(blogFolder).forEach(file => {
+//   blogNames.push(file);
+// });
 
 const blogList = {
   type: new List(BlogListType),
