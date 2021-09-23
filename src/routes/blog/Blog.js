@@ -8,9 +8,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Flex, Grid, Text, Divider } from '@chakra-ui/core';
-// import palet from './palet.jpg';
-// import cards from './cards.jpg';
-// import dice from './dice.jpg';
 
 // create simple key by combining title and date without spaces
 function generateKey(title, date) {
@@ -35,8 +32,7 @@ const Tile = ({ tileId, content }) => (
         rounded="lg"
         backgroundSize="cover"
         backgroundPosition="center"
-        // TO DO - figure out photos
-        // backgroundImage={`url(${content.thumbnail})`}
+        backgroundImage={`url(/${content.imageLink})`}
       />
       <Flex direction="column" w="50%" h="90%" overflow="hidden">
         <Text fontFamily="sans-serif" color="blue.700" fontWeight="600">
@@ -91,5 +87,6 @@ Tile.propTypes = {
   content: PropTypes.shape({
     title: PropTypes.string.isRequired,
     desc: PropTypes.string.isRequired,
+    imageLink: PropTypes.string,
   }).isRequired,
 };

@@ -8,17 +8,19 @@
  */
 
 import React from 'react';
-import Layout from '../../components/Layout';
-import Page from '../../components/Page';
-import about from './about.md';
+import { Flex } from '@chakra-ui/core';
+import Layout from 'components/Layout';
+import Content from './about.mdx';
 
 function action() {
   return {
     chunks: ['about'],
-    title: about.title,
+    title: 'About Me',
     component: (
       <Layout>
-        <Page {...about} />
+        <Flex direction="column" padding={10} bg="earth.100">
+          <Content />
+        </Flex>
       </Layout>
     ),
   };

@@ -9,12 +9,11 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-
+// chakra and theme
 import { ThemeProvider, CSSReset } from '@chakra-ui/core';
+import { MDXProvider } from '@mdx-js/react';
 import ApplicationContext from './ApplicationContext';
-
-// let's try to wrap chakra here
-import customTheme from '../theme';
+import { CustomTheme, MDXComponents } from './Theme';
 
 /**
  * The top-level React component setting context (global) variables
@@ -44,10 +43,12 @@ export default function App({ context, children }) {
   // please do that inside the Layout component.
   return (
     <ApplicationContext.Provider value={{ context }}>
-      <ThemeProvider theme={customTheme}>
-        <CSSReset />
-        {React.Children.only(children)}
-      </ThemeProvider>
+      <MDXProvider components={MDXComponents}>
+        <ThemeProvider theme={CustomTheme}>
+          <CSSReset />
+          {React.Children.only(children)}
+        </ThemeProvider>
+      </MDXProvider>
     </ApplicationContext.Provider>
   );
 }

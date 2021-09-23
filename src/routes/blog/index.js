@@ -49,7 +49,7 @@ async function action({ fetch }) {
               <Tab>Recent</Tab>
               <Tab>Categories</Tab>
             </TabList>
-            <TabPanels>
+            <TabPanels mb={60}>
               <TabPanel>
                 <Blog blogList={allBlogs.blogList} />
               </TabPanel>

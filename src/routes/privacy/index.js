@@ -8,17 +8,16 @@
  */
 
 import React from 'react';
-import Layout from '../../components/Layout';
-import Page from '../../components/Page';
-import privacy from './privacy.md';
+import Layout from 'components/Layout';
+import Content from './privacy.mdx';
 
 function action() {
   return {
     chunks: ['privacy'],
-    title: privacy.title,
+    title: Content.title,
     component: (
       <Layout>
-        <Page {...privacy} />
+        <Content />
       </Layout>
     ),
   };

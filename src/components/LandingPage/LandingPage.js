@@ -9,7 +9,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Box, Text, Heading } from '@chakra-ui/core';
+import { Box, Heading } from '@chakra-ui/core';
 
 export default function LandingPage(props) {
   const { photo, title } = props;

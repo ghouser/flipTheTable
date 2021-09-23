@@ -19,18 +19,18 @@ const routes = {
       path: '',
       load: () => import(/* webpackChunkName: 'home' */ './home'),
     },
-    {
-      path: '/contact',
-      load: () => import(/* webpackChunkName: 'contact' */ './contact'),
-    },
-    {
-      path: '/login',
-      load: () => import(/* webpackChunkName: 'login' */ './login'),
-    },
-    {
-      path: '/register',
-      load: () => import(/* webpackChunkName: 'register' */ './register'),
-    },
+    // {
+    //   path: '/login',
+    //   load: () => import(/* webpackChunkName: 'login' */ './login'),
+    // },
+    // {
+    //   path: '/register',
+    //   load: () => import(/* webpackChunkName: 'register' */ './register'),
+    // },
+    // {
+    //   path: '/admin',
+    //   load: () => import(/* webpackChunkName: 'admin' */ './admin'),
+    // },
     {
       path: '/about',
       load: () => import(/* webpackChunkName: 'about' */ './about'),
@@ -40,16 +40,16 @@ const routes = {
       load: () => import(/* webpackChunkName: 'privacy' */ './privacy'),
     },
     {
-      path: '/admin',
-      load: () => import(/* webpackChunkName: 'admin' */ './admin'),
-    },
-    {
       path: '/blog',
       load: () => import(/* webpackChunkName: 'blog' */ './blog'),
     },
     {
       path: '/blog/:name',
       load: () => import(/* webpackChunkName: 'blogPage' */ './blogPage'),
+    },
+    {
+      path: '/tools',
+      load: () => import(/* webpackChunkName: 'blog' */ './tools'),
     },
 
     // Wildcard routes, e.g. { path: '(.*)', ... } (must go last)

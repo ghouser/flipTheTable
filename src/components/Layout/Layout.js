@@ -9,17 +9,20 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Flex } from '@chakra-ui/core';
 
 import Header from '../Header';
-import Feedback from '../Feedback';
 import Footer from '../Footer';
+
+// bg="earth.100"
 
 export default function Layout({ children }) {
   return (
     <>
       <Header />
-      {children}
-      <Feedback />
+      <Flex direction="column" bg="earth.100" pt={50} pb={60} h="100vh">
+        {children}
+      </Flex>
       <Footer />
     </>
   );

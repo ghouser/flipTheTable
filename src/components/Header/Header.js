@@ -9,7 +9,7 @@
 
 import React from 'react';
 import { Flex, Heading } from '@chakra-ui/core';
-import ReactLink from 'components/Link';
+import ChakraLink from 'components/ChakraLink';
 import Navigation from 'components/Navigation';
 
 export default function Header() {
@@ -19,8 +19,13 @@ export default function Header() {
       color="earth.100"
       align="center"
       justify="space-between"
+      top="0"
+      right="0"
+      left="0"
+      pos="fixed"
+      h={50}
     >
-      <Heading as={ReactLink} to="/">
+      <Heading ml={2} as={ChakraLink} to="/">
         Flip the Table
       </Heading>
       <Navigation />

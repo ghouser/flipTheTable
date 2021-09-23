@@ -8,7 +8,9 @@
  */
 
 import React from 'react';
-import Layout from '../../components/Layout';
+import LandingPage from 'components/LandingPage';
+import Layout from 'components/Layout';
+import photo from 'content/Blog_Banner.png';
 import Home from './Home';
 
 const title = 'Home';
@@ -19,7 +21,8 @@ function action() {
     chunks: ['home'],
     component: (
       <Layout>
-        <Home title={title} />
+        <LandingPage title={title} photo={photo} />
+        <Home />
       </Layout>
     ),
   };

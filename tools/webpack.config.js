@@ -230,15 +230,9 @@ const config = {
         loader: 'raw-loader',
       },
 
-      // Convert Markdown into HTML
-      {
-        test: /\.md$/,
-        loader: path.resolve(__dirname, './lib/markdown-loader.js'),
-      },
-
       // Convert MDX into HTML
       {
-        test: /\.mdx$/,
+        test: /\.mdx?$/,
         use: ['babel-loader', '@mdx-js/loader'],
       },
 

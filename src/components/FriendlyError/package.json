@@ -1,0 +1,6 @@
+{
+  "name": "FriendlyError",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./FriendlyError.js"
+}
