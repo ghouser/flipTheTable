@@ -7,7 +7,7 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-/* eslint-disable max-len */
+require('dotenv').config();
 
 if (process.env.BROWSER) {
   throw new Error(
@@ -21,6 +21,13 @@ module.exports = {
 
   // https://expressjs.com/en/guide/behind-proxies.html
   trustProxy: process.env.TRUST_PROXY || 'loopback',
+
+  // Site Names
+  site: {
+    siteURL: process.env.SITE_URL || 'www.flipthetable.net',
+    siteName: process.env.SITE_NAME || 'Flip The Table',
+    siteContact: process.env.SITE_CONTACT || 'derp@derp.com',
+  },
 
   // API Gateway
   api: {

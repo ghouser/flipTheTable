@@ -61,7 +61,7 @@ export default function Footer() {
         <FeedbackItems to="mailto:derp@derp.com">Report an issue</FeedbackItems>
       </Flex>
       <Flex justifyContent="center">
-        <LinkItems to="/about">© Flip the Table</LinkItems>
+        <LinkItems to="/about">© Flip The Table</LinkItems>
         <TextItems>·</TextItems>
         <LinkItems to="/">Home</LinkItems>
         <TextItems>·</TextItems>

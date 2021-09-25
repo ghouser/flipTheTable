@@ -14,12 +14,12 @@ import { Flex } from '@chakra-ui/core';
 import Header from '../Header';
 import Footer from '../Footer';
 
-// bg="earth.100"
+const siteName = `test ${process.env.SITE_NAME}`;
 
 export default function Layout({ children }) {
   return (
     <>
-      <Header />
+      <Header siteName={siteName} />
       <Flex direction="column" bg="earth.100" pt={50} pb={60} h="100vh">
         {children}
       </Flex>

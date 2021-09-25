@@ -26,7 +26,7 @@ export default function Header() {
       h={50}
     >
       <Heading ml={2} as={ChakraLink} to="/">
-        Flip the Table
+        Flip The Table
       </Heading>
       <Navigation />
     </Flex>
