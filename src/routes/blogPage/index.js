@@ -4,8 +4,6 @@ import Layout from 'components/Layout';
 import { ErrorBoundary } from 'react-error-boundary';
 import FriendlyError from 'components/FriendlyError';
 
-const title = 'Blog Page';
-
 function action(route) {
   // blog name from the route object
   const blogName = route.params.name;
@@ -17,7 +15,7 @@ function action(route) {
 
   return {
     chunks: ['blogPage'],
-    title,
+    title: blogName,
     component: (
       <Layout>
         <ErrorBoundary FallbackComponent={FriendlyError}>

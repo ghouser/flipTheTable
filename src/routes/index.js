@@ -64,7 +64,7 @@ const routes = {
     const route = await next();
 
     // Provide default values for title, description etc.
-    route.title = `${route.title || 'Untitled Page'} - ${process.env.SITE_URL}`;
+    route.title = `${route.title || 'Untitled Page'} - flipthetable.net`;
     route.description = route.description || '';
 
     return route;

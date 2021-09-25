@@ -8,6 +8,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Flex, Grid, Text, Divider } from '@chakra-ui/core';
+import ChakraLink from 'components/ChakraLink';
 
 // create simple key by combining title and date without spaces
 function generateKey(title, date) {
@@ -24,6 +25,8 @@ const Tile = ({ tileId, content }) => (
     backgroundColor="blue.100"
     rounded="lg"
     id={tileId}
+    as={ChakraLink}
+    to={`blog/${content.fileName}`}
   >
     <Flex w="100%" h="100%" justifyContent="space-between" alignItems="center">
       <Flex
@@ -74,6 +77,7 @@ Blog.propTypes = {
   blogList: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
+      fileName: PropTypes.string.isRequired,
       imageLink: PropTypes.string.isRequired,
       authors: PropTypes.arrayOf(PropTypes.string),
       pubDate: PropTypes.string.isRequired,
@@ -86,6 +90,7 @@ Tile.propTypes = {
   tileId: PropTypes.number.isRequired,
   content: PropTypes.shape({
     title: PropTypes.string.isRequired,
+    fileName: PropTypes.string.isRequired,
     desc: PropTypes.string.isRequired,
     imageLink: PropTypes.string,
   }).isRequired,

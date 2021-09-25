@@ -20,7 +20,7 @@ const title = 'Blog';
 async function getAllBlogs({ fetch }) {
   const resp = await fetch('/graphql', {
     body: JSON.stringify({
-      query: '{blogList{title,imageLink,authors,pubDate,desc}}',
+      query: '{blogList{title,fileName,imageLink,authors,pubDate,desc}}',
     }),
   });
   const { data } = await resp.json();

@@ -18,6 +18,7 @@ const BlogListType = new ObjectType({
   name: 'BlogItem',
   fields: {
     title: { type: new NonNull(StringType) },
+    fileName: { type: new NonNull(StringType) },
     imageLink: { type: StringType },
     authors: { type: new List(StringType) },
     pubDate: { type: new NonNull(StringType) },
