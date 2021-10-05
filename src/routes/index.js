@@ -49,7 +49,7 @@ const routes = {
     },
     {
       path: '/tools',
-      load: () => import(/* webpackChunkName: 'blog' */ './tools'),
+      load: () => import(/* webpackChunkName: 'tools' */ './tools'),
     },
 
     // Wildcard routes, e.g. { path: '(.*)', ... } (must go last)
@@ -66,6 +66,7 @@ const routes = {
     // Provide default values for title, description etc.
     route.title = `${route.title || 'Untitled Page'} - flipthetable.net`;
     route.description = route.description || '';
+    route.forceReload = route.forceReload || false;
 
     return route;
   },

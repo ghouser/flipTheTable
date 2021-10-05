@@ -1,0 +1,136 @@
+# Why MDX
+[MDX](https://mdxjs.com/) provides a way to use JSX components in markdown files.
+This allows the MD elements to by styled by component libraries like [Chakra UI](https://chakra-ui.com/).
+
+# Styling MDX
+
+## Add MDX Content
+To use an MDX file in a page, it needs to just be imported, and can then be called like any a react component:
+``` JSX
+import React from 'react';
+import Content from 'content/filler.mdx';
+import { Flex } from '@chakra-ui/core';
+
+export default function Home() {
+  return (
+    <Flex ml={10} flexDirection="column">
+      <Content />
+    </Flex>
+  );
+}
+```
+
+## Create MDXComponents Object
+An object of components to be used to style MDX is in `src/components/Theme.js`.
+This converts standard HTML difs to Chakra (or similar styled component).
+```JSX
+const MDXComponents = {
+  h1: props => (
+    <Text as="h1" fontSize="6xl" {...props}>
+      {props.children}
+    </Text>
+  ),
+  . . .
+  p: props => (
+    <Text mb="1rem" {...props}>
+      {props.children}
+    </Text>
+  ),
+  Text,
+  Box,
+  Flex,
+  Heading,
+  Grid: props => <Grid {...props}>{props.children}</Grid>,
+  Link,
+  Image,
+  SimpleGrid,
+  Stack,
+};
+```
+
+## Apply Styling
+The styling is then applied in in `src/components/App.js`
+```JSX
+import React from 'react';
+// chakra
+import { ThemeProvider, CSSReset } from '@chakra-ui/core';
+// mdx
+import { MDXProvider } from '@mdx-js/react';
+import ApplicationContext from './ApplicationContext';
+// chakra theme and MDX components
+import { CustomTheme, MDXComponents } from './Theme';
+
+export default function App({ context, children }) {
+  return (
+    <ApplicationContext.Provider value={{ context }}>
+      <MDXProvider components={MDXComponents}>
+        <ThemeProvider theme={CustomTheme}>
+          <CSSReset />
+          {React.Children.only(children)}
+        </ThemeProvider>
+      </MDXProvider>
+    </ApplicationContext.Provider>
+  );
+}
+```
+
+# Adding Metadata to MDX
+MDX supports [exporting data and components](https://mdxjs.com/getting-started/#exports).
+To help organize content, add a metadata export object to the end of all MDX files:
+```JSX
+export const metadata = {
+  title: 'Static Content With MDX',
+  fileName:'Static-Content-With-MDX',
+  imageLink: '',
+  authors: ["Graham Houser"],
+  pubDate: '10-01-2021',
+  desc: 'Technical help doc to describe code patterns around MDX files.',
+}
+```
+
+# Lazy Loading MDX
+Adding a route for every MDX file is tedious and unnessessary (except if pages need to be rendered fully statically).
+MDX files can be loaded with [loadable-components](https://loadable-components.com/docs/getting-started/)
+
+A generic MDX page could be made like such:
+```JSX
+import React from 'react';
+import loadable from '@loadable/component';
+import Layout from 'components/Layout';
+import { ErrorBoundary } from 'react-error-boundary';
+import FriendlyError from 'components/FriendlyError';
+
+function action(route) {
+  // route object is just props given a name
+  // this could be props.params.whatever
+  const name = route.params.name;
+
+  // load the mdx by file based on route name
+  const Content = loadable(() => import(`path/${name}.mdx`), {
+    fallback: <div>Loading...</div>,
+  });
+
+  return {
+    chunks: ['mdxPage'],
+    title: name,
+    component: (
+      <Layout>
+        <ErrorBoundary FallbackComponent={FriendlyError}>
+          <Content />
+        </ErrorBoundary>
+      </Layout>
+    ),
+  };
+}
+
+export default action;
+```
+
+export const metadata = {
+  title: 'Static Content With MDX',
+  fileName:'Static-Content-With-MDX',
+  imageLink: '',
+  authors: ["Graham Houser"],
+  pubDate: '10-01-2021',
+  desc: 'Technical help doc to describe code patterns around MDX files.',
+}

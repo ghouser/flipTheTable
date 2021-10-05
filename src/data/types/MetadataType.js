@@ -14,8 +14,8 @@ import {
   GraphQLList as List,
 } from 'graphql';
 
-const BlogListType = new ObjectType({
-  name: 'BlogItem',
+const FileMetadata = new ObjectType({
+  name: 'FileMetadata',
   fields: {
     title: { type: new NonNull(StringType) },
     fileName: { type: new NonNull(StringType) },
@@ -26,4 +26,4 @@ const BlogListType = new ObjectType({
   },
 });
 
-export default BlogListType;
+export default FileMetadata;

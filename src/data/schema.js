@@ -13,7 +13,7 @@ import {
 } from 'graphql';
 
 import me from './queries/me';
-import blogList from './queries/blogList';
+import { blogList, docList } from './queries/fileList';
 
 const schema = new Schema({
   query: new ObjectType({
@@ -21,6 +21,7 @@ const schema = new Schema({
     fields: {
       me,
       blogList,
+      docList,
     },
   }),
 });

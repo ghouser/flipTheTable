@@ -56,7 +56,6 @@ async function onLocationChange(location, action) {
     // it finds the first route that matches provided URL path string
     // and whose action method returns anything other than `undefined`.
     const route = await router.resolve(context);
-
     // Prevent multiple page renders during the routing process
     if (currentLocation.key !== location.key) {
       return;
@@ -82,6 +81,10 @@ async function onLocationChange(location, action) {
           const elem = document.getElementById('css');
           if (elem) elem.parentNode.removeChild(elem);
           return;
+        }
+        // reload the page if forceReload is set (for use with MDX dynamic loading)
+        if (route.forceReload) {
+          window.location.reload();
         }
 
         document.title = route.title;
