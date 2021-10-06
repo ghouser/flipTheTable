@@ -1,6 +1,6 @@
 {
-  "name": "web",
-  "version": "0.0.0",
+  "name": "flip-the-table",
+  "version": "1.0.0",
   "private": true,
   "engines": {
     "node": ">=8.16.2",

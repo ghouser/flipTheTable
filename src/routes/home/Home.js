@@ -8,8 +8,8 @@
  */
 
 import React from 'react';
-import Content from 'content/filler.mdx';
 import { Flex } from '@chakra-ui/core';
+import Content from './filler.mdx';
 
 export default function Home() {
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Flex } from '@chakra-ui/core';
 import Layout from 'components/Layout';
-import Content from 'content/filler.mdx';
+import Content from './filler.mdx';
 
 const title = 'Tools';
 

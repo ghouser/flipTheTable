@@ -10,7 +10,7 @@
 import React from 'react';
 import LandingPage from 'components/LandingPage';
 import Layout from 'components/Layout';
-import photo from 'content/Blog_Banner.png';
+import photo from './home-banner.png';
 import Home from './Home';
 
 const title = 'Home';

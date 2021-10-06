@@ -11,9 +11,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Flex, Heading, Text } from '@chakra-ui/core';
 
-export default function NotFound(props) {
-  // const { title, ...attrs } = props;
-  const { title } = props;
+export default function NotFound({ title }) {
   return (
     <Flex h="100px" bg="earth.100" align="center" justify="center">
       <Heading

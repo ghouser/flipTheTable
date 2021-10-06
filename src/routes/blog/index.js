@@ -10,7 +10,7 @@ import Layout from 'components/Layout';
 import LandingPage from 'components/LandingPage';
 import { Flex, Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/core';
 import Blog from './Blog';
-import photo from './Blog_Banner.png';
+import photo from './blog-banner.png';
 
 const title = 'Blog';
 

@@ -14,7 +14,7 @@ const blogList = {
   resolve() {
     const promises = [];
     const results = [];
-    return listMDX('src/content/blogs/*.mdx').then(blogNames => {
+    return listMDX('blogs').then(blogNames => {
       blogNames.forEach(name => {
         // create an array of promised MDX files
         promises.push(getMDX(name));
@@ -36,7 +36,7 @@ const docList = {
   resolve() {
     const promises = [];
     const results = [];
-    return listMDX('src/content/docs/*.mdx').then(docNames => {
+    return listMDX('docs').then(docNames => {
       docNames.forEach(name => {
         // create an array of promised MDX files
         promises.push(getMDX(name));
