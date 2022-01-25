@@ -6,6 +6,9 @@
  */
 
 // this exists to import all mdx files, ensuring webpack gives them proper names
+import Blog1 from './blogs/blog1.mdx';
+import Blog2 from './blogs/blog2.mdx';
+
 import(/* webpackChunkName: 'blogs/blog1' */ './blogs/blog1.mdx');
 import(/* webpackChunkName: 'blogs/blog2' */ './blogs/blog2.mdx');
 import(/* webpackChunkName: 'blogs/blog3' */ './blogs/blog3.mdx');
@@ -18,3 +21,5 @@ import(
 import(
   /* webpackChunkName: 'docs/Static-Content-With-MDX' */ './docs/Static-Content-With-MDX.mdx'
 );
+
+export { Blog1, Blog2 };

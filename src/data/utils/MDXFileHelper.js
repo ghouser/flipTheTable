@@ -1,3 +1,4 @@
+import * as ContentList from 'content';
 import { readFile } from '../../../tools/lib/fs';
 
 // when running locally, manifest is in the build folder
@@ -24,10 +25,15 @@ async function listMDX(dirName) {
   });
 }
 
+// returns
+function listContent() {
+  return Object.keys(ContentList);
+}
+
 // returns a promise of the an imported mdx file by path name
 async function getMDX(name) {
   const mdxFile = await import(`content/${name}`);
   return mdxFile;
 }
 
-export { listMDX, getMDX };
+export { listMDX, listContent, getMDX };
