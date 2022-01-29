@@ -1,0 +1,47 @@
+# Chakra UI
+[Chakra Full Docs](https://chakra-ui.com/docs/getting-started)
+
+Let's take a look at a few key pieces in this project
+## App.js - Top React Component
+The top-level React component setting context (global) variables that can be accessed from all the child components.
+Unless there is an intention to remove Chakra or MDX, this file will not need any modification.
+Chakra `ThemeProvider` is used here.
+```
+src/components/App.js
+```
+
+## Theme.js - Chankra UI Theme
+File for configuring the theme used by Chankra UI components. `MDXComponents` maps loaded MDX to Chakra components.
+```
+src/components/Theme.js
+```
+
+A full color palette has already been defined, but can be modified in `CustomTheme`.
+
+## ChakraLink
+Custom component, takes a Chakra UI `<LINK>` and adds methods to redirecty internally.
+Should be used instead of `<LINK>` for inter-site links.
+```
+src/components/ChakraLink
+```
+
+## MDXPage
+Custom component, lazy loads an MDX file out of a content folder or subfolder and returns the JSX content.
+```
+src/components/MDXPage
+```
+
+## FriendlyError
+Should be used as the fallback component when using an Error Boundary.
+```
+src/components/FriendlyError
+```
+
+export const metadata = {
+  title: 'Chakra Components',
+  fileName:'chakra-components',
+  imageLink: '',
+  authors: ["Graham Houser"],
+  pubDate: '01-28-2022',
+  desc: 'Additional information on Chakra implementation in app.',
+}

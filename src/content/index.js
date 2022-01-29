@@ -10,11 +10,11 @@ import(/* webpackChunkName: 'blogs/blog1' */ './blogs/blog1.mdx');
 import(/* webpackChunkName: 'blogs/blog2' */ './blogs/blog2.mdx');
 import(/* webpackChunkName: 'blogs/blog3' */ './blogs/blog3.mdx');
 import(/* webpackChunkName: 'blogs/test' */ './blogs/test.mdx');
-import(/* webpackChunkName: 'docs/Start-Here' */ './docs/Start-Here.mdx');
+import(/* webpackChunkName: 'docs/Start-Here' */ './docs/start-here.mdx');
 // eslint does not like the long filenames
 import(
-  /* webpackChunkName: 'docs/Creating-Dynamic-Pages' */ './docs/Creating-Dynamic-Pages.mdx'
+  /* webpackChunkName: 'docs/Creating-Dynamic-Pages' */ './docs/creating-dynamic-pages.mdx'
 );
 import(
-  /* webpackChunkName: 'docs/Static-Content-With-MDX' */ './docs/Static-Content-With-MDX.mdx'
+  /* webpackChunkName: 'docs/Static-Content-With-MDX' */ './docs/static-content-with-MDX.mdx'
 );

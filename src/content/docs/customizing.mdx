@@ -1,0 +1,100 @@
+# Customizing
+Like what you see, but not sure where to jump in?
+
+## Directory Layout
+Let's start by looking over the project structure:
+
+```
+.
+├── /build/                     # The folder for compiled output
+├── /node_modules/              # 3rd-party libraries and utilities
+├── /public/                    # Static files which are copied into the /build/public folder
+├── /src/                       # The source code of the application
+│   ├── /components/            # React components
+│   ├── /content/               # Static content (MDX files)
+│   ├── /data/                  # GraphQL server schema and data models
+│   ├── /routes/                # Page/screen components along with the routing information
+│   ├── /client.js              # Client-side startup script
+│   ├── /config.js              # Global application settings
+│   ├── /server.js              # Server-side startup script
+│   └── ...                     # Other core framework modules
+├── /test/                      # Unit and end-to-end tests
+├── /tools/                     # Build automation scripts and utilities
+│   ├── /lib/                   # Library for utility snippets
+│   ├── /build.js               # Builds the project from source to output (build) folder
+│   ├── /bundle.js              # Bundles the web resources into package(s) through Webpack
+│   ├── /clean.js               # Cleans up the output (build) folder
+│   ├── /copy.js                # Copies static files to output (build) folder
+│   ├── /deploy.js              # Deploys your web application
+│   ├── /postcss.config.js      # Configuration for transforming styles with PostCSS plugins
+│   ├── /render.js              # Renders specified routes to static HTML
+│   ├── /run.js                 # Helper function for running build automation tasks
+│   ├── /runServer.js           # Launches (or restarts) Node.js server
+│   ├── /start.js               # Launches the development web server with "live reload"
+│   └── /webpack.config.js      # Configurations for client-side and server-side bundles
+├── Dockerfile                  # Commands for building a Docker image for production
+├── package.json                # The list of 3rd party libraries and utilities
+└── yarn.lock                   # Fixed versions of all the dependencies
+```
+
+## Components
+Module of all react components used to build pages. Add new components or modify existing.
+
+See chakra components for deeper dive.
+
+## Content
+Home of all the MDX.
+### index.js
+Imports all MDX files in subfolders, then exports an object listing its imports.
+This creates a list of all files in content, a useful tool in creating dynamic routes.
+
+See `Static Content With MDX` for more information.
+
+## Routes
+One folder per route. See `blogPage` and `docsPage` for example of loading MDX files by filename.
+### index.js
+Primary route declaration.
+### src/router.js
+Uses [Universal Router](https://github.com/kriasoft/universal-router) npm
+module that is built around the same concepts demonstrated earlier with the major differences that
+it supports nested routes and provides you with the helper `Link` React component. It can be seen as
+a lightweight more flexible alternative to React Router.
+
+- It has simple code with minimum dependencies (just `path-to-regexp` and `babel-runtime`)
+- It can be used with any JavaScript framework such as React, Vue.js etc
+- It uses the same middleware approach used in Express and Koa, making it easy to learn
+- It uses the exact same API and implementation to be used in both Node.js and browser environments
+
+The [Getting Started page](https://github.com/kriasoft/universal-router/blob/master/docs/getting-started.md)
+has a few examples how to use it.
+
+## Back-end - Database
+A set of simple user objects are already defined in `data/models/User*`, as well as `sequelize.js` to initialize a simple SQL database to store user logins.
+Users are expected to login with Facebook, see `Configure Facebook Login` to better understand the user login flow.
+
+See [sequelize](https://sequelize.org/) documentation to better understand ORM.
+
+## Back-end - GraphQL
+`data/types` and `data/queries` are to define data that can be returned by GraphQL and the logic to perform the query.
+
+See [GraphQL](https://graphql.org/learn/) documentation for more information.
+
+## Environment Variables
+Two approaches for environment variables, either set in a config (commits to repo) or local only.
+### config.js
+Used to set defaults for environment variables
+```
+src/config.js
+```
+### Locally Set
+Overwrite or add additional environment variables by creating a `.env` file in the root directory.
+Varialbes are loaded using [dotenv](https://www.npmjs.com/package/dotenv).
+
+export const metadata = {
+  title: 'Customizing',
+  fileName:'customizing',
+  imageLink: '',
+  authors: ["Graham Houser"],
+  pubDate: '01-28-2022',
+  desc: 'Guide for customizing the app.',
+}
