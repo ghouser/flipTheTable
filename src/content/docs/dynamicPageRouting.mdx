@@ -1,0 +1,164 @@
+# Issues with Static Routing
+A common modern design principle is DRY - Don't Repeat Yourself. While it is very simple to add a static page by declaring it in a router
+, having to do so every time a new blog or document is created requires repetitive code changes that are not truly needed.
+
+Let's examine an approach for making a route to a page that will act as a parent page. It will have a dynamic list of links to sub-pages loaded dynamically.
+
+# List Possible Content
+First, it's necessary to create a list of what could be loaded. This example will consider loading MDX files.
+
+## Create File List
+To load an MDX file, the name of the file is needed. With an effort to be as DRY as possible, all static content is being stored in the `content` module.
+
+`index.js` for the module uses a wildcard import [babel-plugin-import-glob](https://www.npmjs.com/package/babel-plugin-import-glob)
+which imports everything by the given pattern (in this case *.mdx). The module exports a list of the imports, which is effectively a file list.
+The `docs` and `blogs` sub-folders are imported and exported separately, but could have been done in a object.
+
+```jsx
+import * as blogs from './blogs/*.mdx';
+import * as docs from './docs/*.mdx';
+/**
+ * Grab the list of blogs and store them in a blog list.
+ */
+const blogList = Object.keys(blogs);
+/**
+ * Grab the list of docs and store them in a doc list.
+ */
+const docList = Object.keys(docs);
+// export list of blogs and docs
+export { blogList, docList };
+```
+
+## Create Friendly Content List
+Users will need some friendly formatted information about the content that could be accessed.
+
+As explained in `staticContentWithMDX`, MDX files can have exports, and MDX files in this repo are setup with a `metadata` export.
+As the filename is now known, the MDX file can be lazy loaded, and the metadata can be read to display user friendly information about the content.
+
+This repo uses GraphQL query to load all MDX files in a directory, and return an object of each files metadata (`data/queries/fileList.js`):
+```jsx
+const blogList = {
+  type: new List(FileMetadata),
+  resolve() {
+    const promises = [];
+    const results = [];
+    return listMDX('blogs').then(blogNames => {
+      blogNames.forEach(name => {
+        // create an array of promised MDX files
+        promises.push(getMDX(`blogs/${name}.mdx`));
+      });
+      // for each file, get the metadata object and add to results array
+      return Promise.all(promises).then(modules => {
+        modules.forEach(module => {
+          results.push(module.metadata);
+        });
+        // return results array
+        return results;
+      });
+    });
+  },
+};
+```
+Output:
+```
+"blogList": [
+      {
+        "title": "Blog 1",
+        "imageLink": "cards.jpg",
+        "authors": [
+          "Graham Houser"
+        ],
+        "pubDate": "01-01-2021",
+        "desc": "Describe Blog 1"
+      },
+      {
+        "title": "Blog 2",
+        "imageLink": "dice.jpg",
+        "authors": [
+          "Graham Houser"
+        ],
+        "pubDate": "01-01-2021",
+        "desc": "Describe blog 2"
+      },
+      . . .
+]
+```
+
+# Create Route and Sub Route
+The route design pattern will be `/parent` to the parent page, then `parent/child` for the sub-page.
+```
+/blog
+/blog/blogName
+```
+## Router
+The router needs only two routes, one to parent, and another parent/:variable
+```
+    {
+      path: '/blog',
+      load: () => import(/* webpackChunkName: 'blog' */ './blog'),
+    },
+    {
+      path: '/blog/:name',
+      load: () => import(/* webpackChunkName: 'blogPage' */ './blogPage'),
+    },
+```
+
+# Create Page and Sub Page
+With the content list and route created, the pages can be built out.
+
+## Parent Page
+The parent page needs to create a list of possible sub pages. It can call the content list created before, and render elements in any way desired (tiles, accordion, bullet list, etc).
+
+For `blog` in this repo, it maps across the blogList, and creates a tile per blog, each with a link to `blogs/filename`
+```jsx
+// routes/blog/Blog.js
+
+// create simple key by combining title and date without spaces
+function generateKey(title, date) {
+  return title.replace(/\s/g, '') + date.replace(/\s/g, '');
+}
+// blogList is output of graphQL query
+export default function Blog({ blogList }) {
+  return (
+    <Grid
+      templateColumns="repeat(2, 1fr)"
+      gap={5}
+      justifyItems="center"
+      p="5px"
+    >
+      {blogList.map((content, index) => (
+        <Flex
+          direction="column"
+          key={generateKey(content.title, content.pubDate)}
+        >
+          <Tile tileId={index} content={content} />
+          <Text fontFamily="sans-serif" color="blue.700">
+            {content.authors} - {content.pubDate}
+          </Text>
+        </Flex>
+      ))}
+    </Grid>
+  );
+}
+```
+
+## Child Page
+Finally, the child page is a simple lazy loaded MDX page. See `Lazy Loading MDX` for code example.
+
+# Design Considerations
+Following the above design, adding a new doc or blog is as simple as adding the .MDX file to the correct `content` path.
+
+The following should be considered when using this approach.
+* `content/index.js` needs to be recompiled when a new file is added for the wildcard import to pick it up
+  * `yarn rebuild`
+* Sub-folders of `content` should be kept to a minimum.
+  * Additional grouping and sorting of content and be done through data in the `metadata` export of each MDX file
+
+export const metadata = {
+  title: 'Dynamic Page Routing',
+  fileName:'dynamicPageRouting',
+  imageLink: '',
+  authors: ["Graham Houser"],
+  pubDate: '01-28-2022',
+  desc: 'Guide for creating pages dynamically without static coded routes.',
+}

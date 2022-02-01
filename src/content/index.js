@@ -9,12 +9,12 @@ import * as blogs from './blogs/*.mdx';
 import * as docs from './docs/*.mdx';
 
 /**
- * Grab the list of blogs and store them in a blog list.
+ * Grab the list of blogs and store them in a blog list
  */
 const blogList = Object.keys(blogs);
 
 /**
- * Grab the list of docs and store them in a doc list.
+ * Grab the list of docs and store them in a doc list
  */
 const docList = Object.keys(docs);
 
