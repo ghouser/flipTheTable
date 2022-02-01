@@ -1,4 +1,4 @@
-How to configure Facebook Login
+# Configure Facebook Login
 
 1.  Navigate and Login to https://developers.facebook.com/apps
 2.  Click "Add New App"
@@ -9,3 +9,15 @@ How to configure Facebook Login
 7.  Click Facebook Login on the left panel
 8.  Turn on Client OAuth Login and Web OAuth Login. Enter `http://localhost:3000/login/facebook/return` for Valid OAuth redirect URIs.
 9.  Get your App ID and Secret and copy it to [`src/config.js`](../src/config.js)
+
+## PassportJS
+Facebook interaction is handled with [PassportJS](https://www.passportjs.org/concepts/authentication/facebook/).
+
+export const metadata = {
+  title: 'Configure Facebook Login',
+  fileName:'configure-facebook-login',
+  imageLink: '',
+  authors: ["Graham Houser"],
+  pubDate: '01-28-2022',
+  desc: 'Steps to setup the Facebook Login flow.',
+}

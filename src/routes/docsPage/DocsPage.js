@@ -11,18 +11,18 @@ import loadable from '@loadable/component';
 import { ErrorBoundary } from 'react-error-boundary';
 import FriendlyError from 'components/FriendlyError';
 
-export default function BlogPage({ pageName }) {
+export default function DocsPage({ docsName }) {
   // load the mdx by file based on route name
   const Content = loadable(({ fileName }) => import(`content/${fileName}`), {
     fallback: <div>Loading...</div>,
   });
   return (
     <ErrorBoundary FallbackComponent={FriendlyError}>
-      <Content fileName={pageName} />
+      <Content fileName={docsName} />
     </ErrorBoundary>
   );
 }
 
-BlogPage.propTypes = {
-  pageName: PropTypes.string.isRequired,
+DocsPage.propTypes = {
+  docsName: PropTypes.string.isRequired,
 };
