@@ -17,7 +17,7 @@ const blogList = {
     return listMDX('blogs').then(blogNames => {
       blogNames.forEach(name => {
         // create an array of promised MDX files
-        promises.push(getMDX(name));
+        promises.push(getMDX(`blogs/${name}.mdx`));
       });
       // for each file, get the metadata object and add to results array
       return Promise.all(promises).then(modules => {
@@ -39,7 +39,7 @@ const docList = {
     return listMDX('docs').then(docNames => {
       docNames.forEach(name => {
         // create an array of promised MDX files
-        promises.push(getMDX(name));
+        promises.push(getMDX(`docs/${name}.mdx`));
       });
       // for each file, get the metadata object and add to results array
       return Promise.all(promises).then(modules => {

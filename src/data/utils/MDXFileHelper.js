@@ -1,33 +1,18 @@
-import * as ContentList from 'content';
-import { readFile } from '../../../tools/lib/fs';
+/**
+ * Copyright © 2020-Flip the Table. All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
 
-// when running locally, manifest is in the build folder
-const debugPath = './build/asset-manifest.json';
-const releasePath = './asset-manifest.json';
+import { blogList, docList } from 'content';
 
 // returns a promise containing a list of mdx files in the requested directory
 // expected input is `blogs` or `docs`
 async function listMDX(dirName) {
-  const docs = /docs.*/;
-  const blogs = /blogs.*/;
-  const results = [];
-
-  return readFile(__DEV__ ? debugPath : releasePath).then(rawdata => {
-    const chunks = Object.keys(JSON.parse(rawdata)).filter(names => {
-      if (dirName === 'docs') return names.match(docs);
-      if (dirName === 'blogs') return names.match(blogs);
-      return [];
-    });
-    chunks.forEach(file => {
-      results.push(file.replace('.js', '.mdx'));
-    });
-    return results;
-  });
-}
-
-// returns
-function listContent() {
-  return Object.keys(ContentList);
+  if (dirName === 'docs') return docList;
+  if (dirName === 'blogs') return blogList;
+  return null;
 }
 
 // returns a promise of the an imported mdx file by path name
@@ -36,4 +21,4 @@ async function getMDX(name) {
   return mdxFile;
 }
 
-export { listMDX, listContent, getMDX };
+export { listMDX, getMDX };
