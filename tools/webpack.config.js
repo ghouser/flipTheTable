@@ -80,7 +80,7 @@ const config = {
           cacheDirectory: isDebug,
 
           // https://babeljs.io/docs/usage/options/
-          babelrc: false,
+          babelrc: true,
           configFile: false,
           presets: [
             // A Babel preset that can automatically determine the Babel plugins and polyfills
